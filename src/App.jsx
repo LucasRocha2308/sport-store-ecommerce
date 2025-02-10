@@ -1,12 +1,9 @@
-import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1>SportStore Ecommerce</h1>
+      <h1>SportStore Ecommerce </h1>
     </>
   );
 }
