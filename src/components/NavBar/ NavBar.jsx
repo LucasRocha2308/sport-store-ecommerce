@@ -6,8 +6,10 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { CartWidget } from "../CartWidget/CartWidget";
 
 const navItems = ["Camisas", "Chuteiras", "Shorts"];
+const cartItems = ["Chuteira", "Camisa", "Shorts"];
 
 export function NavBar() {
   return (
@@ -33,6 +35,7 @@ export function NavBar() {
               </Button>
             ))}
           </Box>
+          <CartWidget items={cartItems} />
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
