@@ -10,9 +10,10 @@ import {
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useCart } from "../../context/CartContext";
+import { ItemCount } from "../ItemCount/ItemCount";
 
 export function CartWidget() {
-  const { cart, totalItems, removeFromCart } = useCart();
+  const { cart, totalItems, removeFromCart, updateQuantity } = useCart();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -53,9 +54,23 @@ export function CartWidget() {
             cart.map((item) => (
               <ListItem
                 key={item.id}
-                style={{ display: "flex", justifyContent: "space-between" }}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
               >
-                {item.title} (x{item.quantity})
+                <div>
+                  {item.title}
+                  <ItemCount
+                    initial={item.quantity}
+                    min={1}
+                    max={10}
+                    onQuantityChange={(newQuantity) =>
+                      updateQuantity(item.id, newQuantity)
+                    }
+                  />
+                </div>
                 <Button size="small" onClick={() => removeFromCart(item.id)}>
                   Remover
                 </Button>
