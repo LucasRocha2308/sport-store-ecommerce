@@ -79,7 +79,9 @@ export function NavBar() {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>{menuContent}</Box>
           <CartWidget />
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" component={Link} to="/login">
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer

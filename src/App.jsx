@@ -4,6 +4,7 @@ import { NavBar } from "./components/NavBar";
 import { Home } from "./pages/Home";
 import { Shop } from "./pages/shop";
 import { CategoryPage } from "./pages/Category";
+import { LoginRegister } from "./pages/loginRegister";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginRegister />} />
         <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/shop" element={<Shop />} />
       </Routes>
