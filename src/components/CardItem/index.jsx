@@ -15,7 +15,7 @@ export function CardItem({ item }) {
     <Card style={{ maxWidth: 250, margin: "10px" }}>
       <CardMedia
         component="img"
-        height="140"
+        height="200"
         image={item.pictureUrl}
         alt={item.title}
       />
