@@ -1,13 +1,14 @@
-import { NavBar } from "../src/components/NavBar/ NavBar";
+import React from "react";
+import { CartProvider } from "./context/CartContext";
+import { NavBar } from "./components/NavBar/ NavBar";
 import { ItemListContainer } from "./components/ItemListContainer/ItemListContainer";
 
 function App() {
   return (
-    <>
+    <CartProvider>
       <NavBar />
-      <h1>SportStore Ecommerce </h1>
       <ItemListContainer />
-    </>
+    </CartProvider>
   );
 }
 

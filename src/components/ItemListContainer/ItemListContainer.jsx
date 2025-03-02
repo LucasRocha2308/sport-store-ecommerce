@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { getItems, getItemsByCategory } from "../../services/itemsService";
+import { getItems } from "../../services/itemsService";
+import { CardItem } from "../CardItem/CardItem";
+import { Grid } from "@mui/material";
 
-export function ItemListContainer({ category }) {
+export function ItemListContainer() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    if (category) {
-      getItemsByCategory(category).then(setItems);
-    } else {
-      getItems().then(setItems);
-    }
-  }, [category]);
+    getItems().then(setItems);
+  }, []);
 
   return (
-    <div>
-      <h2>{category ? `Categoria: ${category}` : "Todos os itens"}</h2>
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            {item.title} - R$ {item.price}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Grid container spacing={2} justifyContent="center" marginTop="24px">
+      {items.map((item) => (
+        <CardItem key={item.id} item={item} />
+      ))}
+    </Grid>
   );
 }

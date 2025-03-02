@@ -1,15 +1,18 @@
 import React from "react";
 import {
   Card,
-  CardMedia,
   CardContent,
+  CardMedia,
   Typography,
   Button,
 } from "@mui/material";
+import { useCart } from "../../context/CartContext";
 
-export function CardItem({ item, onAddToCart }) {
+export function CardItem({ item }) {
+  const { addToCart } = useCart();
+
   return (
-    <Card sx={{ maxWidth: 345, margin: 2 }}>
+    <Card style={{ maxWidth: 250, margin: "10px" }}>
       <CardMedia
         component="img"
         height="140"
@@ -17,21 +20,17 @@ export function CardItem({ item, onAddToCart }) {
         alt={item.title}
       />
       <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
-          {item.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="h6">{item.title}</Typography>
+        <Typography variant="body2" color="textSecondary">
           {item.description}
         </Typography>
-        <Typography variant="h6" color="primary" sx={{ marginTop: 1 }}>
+        <Typography variant="h6" color="primary">
           R$ {item.price.toFixed(2)}
         </Typography>
         <Button
           variant="contained"
           color="primary"
-          fullWidth
-          onClick={() => onAddToCart(item)}
-          sx={{ marginTop: 2 }}
+          onClick={() => addToCart(item)}
         >
           Adicionar ao Carrinho
         </Button>
