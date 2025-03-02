@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useCart } from "../../context/CartContext";
-import { ItemCount } from "../ItemCount/ItemCount";
+import { ItemCount } from "../ItemCount";
 
 export function CartWidget() {
   const { cart, totalItems, removeFromCart, updateQuantity } = useCart();

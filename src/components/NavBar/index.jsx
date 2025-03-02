@@ -6,10 +6,13 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { CartWidget } from "../CartWidget/CartWidget";
+import { CartWidget } from "../CartWidget";
+import { Link } from "react-router-dom"; // Importe o Link
 
-const navItems = ["Camisas", "Chuteiras", "Shorts"];
-const cartItems = ["Chuteira", "Camisa", "Shorts"];
+const navItems = [
+  { name: "Shop", path: "/shop" },
+  { name: "Meus Pedidos", path: "/meus-pedidos" },
+];
 
 export function NavBar() {
   return (
@@ -26,16 +29,23 @@ export function NavBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            SportStore Ecommerce
+            <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+              SportStore Ecommerce
+            </Link>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                {item}
+              <Button
+                key={item.name}
+                sx={{ color: "#fff" }}
+                component={Link}
+                to={item.path}
+              >
+                {item.name}
               </Button>
             ))}
           </Box>
-          <CartWidget items={cartItems} />
+          <CartWidget />
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>

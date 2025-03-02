@@ -1,14 +1,18 @@
 import React from "react";
-import { CartProvider } from "./context/CartContext";
-import { NavBar } from "./components/NavBar/ NavBar";
-import { ItemListContainer } from "./components/ItemListContainer/ItemListContainer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { NavBar } from "./components/NavBar";
+import { Home } from "./pages/Home";
+import { Shop } from "./pages/shop";
 
 function App() {
   return (
-    <CartProvider>
+    <BrowserRouter>
       <NavBar />
-      <ItemListContainer />
-    </CartProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

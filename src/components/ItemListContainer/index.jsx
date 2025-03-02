@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getItems } from "../../services/itemsService";
-import { CardItem } from "../CardItem/CardItem";
+import { CardItem } from "../CardItem";
 import { Grid } from "@mui/material";
 
 export function ItemListContainer() {
