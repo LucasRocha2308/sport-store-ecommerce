@@ -359,7 +359,7 @@ export const items = [
     price: 59.99,
     pictureUrl:
       "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg",
-    category: "womens",
+    category: "balls",
     stock: 30,
     rating: 4.7,
     details: {
@@ -375,7 +375,7 @@ export const items = [
     price: 49.99,
     pictureUrl:
       "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg",
-    category: "womens",
+    category: "balls",
     stock: 40,
     rating: 4.5,
     details: {
@@ -392,7 +392,7 @@ export const items = [
     price: 79.99,
     pictureUrl:
       "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg",
-    category: "womens",
+    category: "balls",
     stock: 50,
     rating: 4.6,
     details: {
@@ -408,7 +408,7 @@ export const items = [
     price: 39.99,
     pictureUrl:
       "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg",
-    category: "womens",
+    category: "balls",
     stock: 60,
     rating: 4.4,
     details: {
@@ -425,7 +425,7 @@ export const items = [
     price: 129.99,
     pictureUrl:
       "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg",
-    category: "womens",
+    category: "balls",
     stock: 20,
     rating: 4.8,
     details: {
@@ -442,7 +442,7 @@ export const items = [
     price: 199.99,
     pictureUrl:
       "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg",
-    category: "womens",
+    category: "balls",
     stock: 10,
     rating: 4.9,
     details: {
@@ -458,7 +458,7 @@ export const items = [
     price: 29.99,
     pictureUrl:
       "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg",
-    category: "womens",
+    category: "balls",
     stock: 70,
     rating: 4.3,
     details: {
@@ -475,7 +475,7 @@ export const items = [
     price: 19.99,
     pictureUrl:
       "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg",
-    category: "mens",
+    category: "footballboots",
     stock: 100,
     rating: 4.5,
     details: {
@@ -492,7 +492,7 @@ export const items = [
     price: 39.99,
     pictureUrl:
       "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg",
-    category: "mens",
+    category: "footballboots",
     stock: 80,
     rating: 4.6,
     details: {
@@ -509,7 +509,7 @@ export const items = [
     price: 69.99,
     pictureUrl:
       "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg",
-    category: "mens",
+    category: "footballboots",
     stock: 60,
     rating: 4.7,
     details: {
@@ -526,7 +526,7 @@ export const items = [
     price: 49.99,
     pictureUrl:
       "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg",
-    category: "mens",
+    category: "footballboots",
     stock: 50,
     rating: 4.4,
     details: {
@@ -543,7 +543,7 @@ export const items = [
     price: 129.99,
     pictureUrl:
       "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg",
-    category: "mens",
+    category: "footballboots",
     stock: 30,
     rating: 4.8,
     details: {
@@ -559,7 +559,7 @@ export const items = [
     price: 29.99,
     pictureUrl:
       "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg",
-    category: "mens",
+    category: "footballboots",
     stock: 70,
     rating: 4.3,
     details: {
@@ -576,7 +576,7 @@ export const items = [
     price: 149.99,
     pictureUrl:
       "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg",
-    category: "mens",
+    category: "footballboots",
     stock: 25,
     rating: 4.7,
     details: {

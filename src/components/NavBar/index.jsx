@@ -25,8 +25,8 @@ const categories = [
   { name: "Bonés", path: "/category/hats" },
   { name: "Jaquetas", path: "/category/jackets" },
   { name: "Tênis", path: "/category/sneakers" },
-  { name: "Mulheres", path: "/category/womens" },
-  { name: "Homens", path: "/category/mens" },
+  { name: "Bolas", path: "/category/balls" },
+  { name: "Chuteiras", path: "/category/footballboots" },
   { name: "Meias", path: "/category/socks" },
   { name: "Mochilas", path: "/category/backpacks" },
 ];
