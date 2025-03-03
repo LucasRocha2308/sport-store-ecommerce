@@ -1,6 +1,5 @@
-import * as React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Container,
   Typography,
@@ -11,7 +10,14 @@ import {
   Tabs,
   Tab,
   Box,
+  Snackbar,
+  Alert,
 } from "@mui/material";
+import { auth } from "../../../firebase";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -24,20 +30,64 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
 
 export function LoginRegister() {
   const [value, setValue] = useState(0);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setSnackbarMessage("Login realizado com sucesso!");
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
+      navigate("/shop");
+    } catch (error) {
+      setSnackbarMessage(error.message);
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setSnackbarMessage("As senhas não coincidem!");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+      return;
+    }
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      setSnackbarMessage("Cadastro realizado com sucesso!");
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
+      navigate("/");
+    } catch (error) {
+      setSnackbarMessage(error.message);
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+    }
   };
 
   return (
@@ -51,13 +101,15 @@ export function LoginRegister() {
           <Typography variant="h5" gutterBottom>
             Login
           </Typography>
-          <form>
+          <form onSubmit={handleLogin}>
             <TextField
               label="Email"
               fullWidth
               margin="normal"
               variant="outlined"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               label="Senha"
@@ -66,6 +118,8 @@ export function LoginRegister() {
               variant="outlined"
               type="password"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -89,13 +143,15 @@ export function LoginRegister() {
           <Typography variant="h5" gutterBottom>
             Cadastro
           </Typography>
-          <form>
+          <form onSubmit={handleRegister}>
             <TextField
               label="Nome"
               fullWidth
               margin="normal"
               variant="outlined"
               required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <TextField
               label="Email"
@@ -103,6 +159,8 @@ export function LoginRegister() {
               margin="normal"
               variant="outlined"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               label="Senha"
@@ -111,6 +169,8 @@ export function LoginRegister() {
               variant="outlined"
               type="password"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <TextField
               label="Confirmar Senha"
@@ -119,6 +179,8 @@ export function LoginRegister() {
               variant="outlined"
               type="password"
               required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -132,6 +194,19 @@ export function LoginRegister() {
           </form>
         </TabPanel>
       </Paper>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity={snackbarSeverity}
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { CartWidget } from "../CartWidget";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -15,6 +15,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import { auth } from "../../../firebase";
+import { signOut } from "firebase/auth";
 
 const navItems = [
   { name: "Shop", path: "/shop" },
@@ -32,8 +34,17 @@ const categories = [
 ];
 
 export function NavBar() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [categoriesOpen, setCategoriesOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -41,6 +52,15 @@ export function NavBar() {
 
   const handleCategoriesToggle = () => {
     setCategoriesOpen(!categoriesOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login");
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
   };
 
   const menuContent = (
@@ -79,9 +99,15 @@ export function NavBar() {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>{menuContent}</Box>
           <CartWidget />
-          <Button color="inherit" component={Link} to="/login">
-            Login
-          </Button>
+          {user ? (
+            <Button color="inherit" onClick={handleLogout}>
+              Logout
+            </Button>
+          ) : (
+            <Button color="inherit" component={Link} to="/login">
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer
