@@ -7,6 +7,9 @@ import { CategoryPage } from "./pages/Category";
 import { ItemDetail } from "./pages/itemDetail";
 import { LoginRegister } from "./pages/loginRegister";
 import { CartPage } from "./pages/CartPage";
+import { MyOrders } from "./pages/MyOrders";
+import { CheckoutPage } from "./pages/CheckoutPage";
+import { PrivateRoute } from "./components/PrivateRoutes";
 
 function App() {
   return (
@@ -15,6 +18,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginRegister />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/meus-pedidos" element={<MyOrders />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+        </Route>
         <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/item/:id" element={<ItemDetail />} />
         <Route path="/shop" element={<Shop />} />

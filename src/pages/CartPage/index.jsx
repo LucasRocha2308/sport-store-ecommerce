@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import {
   Container,
@@ -8,18 +8,39 @@ import {
   Button,
   Divider,
   Box,
-  Grid,
   CardMedia,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { ItemCount } from "../../components/ItemCount";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase";
 
 export function CartPage() {
   const { cart, updateQuantity, removeFromCart } = useContext(CartContext);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("info");
+  const navigate = useNavigate();
 
   const totalCompra = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  const handleFinalizarCompra = () => {
+    if (auth.currentUser) {
+      navigate("/checkout");
+    } else {
+      setSnackbarMessage("Você precisa estar logado para finalizar a compra!");
+      setSnackbarSeverity("warning");
+      setSnackbarOpen(true);
+    }
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
 
   return (
     <Container sx={{ py: 4 }}>
@@ -107,8 +128,32 @@ export function CartPage() {
           >
             Total: R$ {totalCompra.toFixed(2)}
           </Typography>
+
+          <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleFinalizarCompra}
+            >
+              Finalizar Compra
+            </Button>
+          </Box>
         </>
       )}
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity={snackbarSeverity}
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }

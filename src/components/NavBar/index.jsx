@@ -65,16 +65,19 @@ export function NavBar() {
 
   const menuContent = (
     <>
-      {navItems.map((item) => (
-        <Button
-          key={item.name}
-          sx={{ color: "#fff" }}
-          component={Link}
-          to={item.path}
-        >
-          {item.name}
-        </Button>
-      ))}
+      {navItems.map((item) => {
+        if (item.name === "Meus Pedidos" && !user) return null;
+        return (
+          <Button
+            key={item.name}
+            sx={{ color: "#fff" }}
+            component={Link}
+            to={item.path}
+          >
+            {item.name}
+          </Button>
+        );
+      })}
     </>
   );
 
@@ -125,17 +128,20 @@ export function NavBar() {
         }}
       >
         <List>
-          {navItems.map((item) => (
-            <ListItem
-              key={item.name}
-              component={Link}
-              to={item.path}
-              onClick={handleDrawerToggle}
-              sx={{ color: "inherit", textDecoration: "none" }}
-            >
-              <ListItemText primary={item.name} />
-            </ListItem>
-          ))}
+          {navItems.map((item) => {
+            if (item.name === "Meus Pedidos" && !user) return null;
+            return (
+              <ListItem
+                key={item.name}
+                component={Link}
+                to={item.path}
+                onClick={handleDrawerToggle}
+                sx={{ color: "inherit", textDecoration: "none" }}
+              >
+                <ListItemText primary={item.name} />
+              </ListItem>
+            );
+          })}
           <ListItem button onClick={handleCategoriesToggle}>
             <ListItemText primary="Categorias" />
             {categoriesOpen ? <ExpandLess /> : <ExpandMore />}
