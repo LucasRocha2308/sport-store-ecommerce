@@ -5,7 +5,8 @@ export const items = [
     description:
       "Boné clássico de beisebol com alça ajustável. Feito de 100% algodão. Disponível em várias cores.",
     price: 29.99,
-    pictureUrl: "https://images.pexels.com/photos/35185/pexels-photo.jpg",
+    pictureUrl:
+      "https://images.pexels.com/photos/206434/pexels-photo-206434.jpeg",
     category: "hats",
     stock: 50,
     rating: 4.5,
@@ -22,7 +23,7 @@ export const items = [
       "Boné trucker estiloso com traseira em mesh. Perfeito para atividades ao ar livre.",
     price: 34.99,
     pictureUrl:
-      "https://images.pexels.com/photos/157888/fashion-glasses-hat-property-157888.jpeg",
+      "https://images.pexels.com/photos/206434/pexels-photo-206434.jpeg",
     category: "hats",
     stock: 30,
     rating: 4.2,
@@ -56,7 +57,7 @@ export const items = [
       "Boné snapback moderno com aba reta. Alça ajustável para um ajuste perfeito.",
     price: 39.99,
     pictureUrl:
-      "https://images.pexels.com/photos/157888/fashion-glasses-hat-property-157888.jpeg",
+      "https://images.pexels.com/photos/206434/pexels-photo-206434.jpeg",
     category: "hats",
     stock: 40,
     rating: 4.3,
@@ -89,7 +90,8 @@ export const items = [
     description:
       "Boné casual com aba curvada. Feito de algodão macio para conforto o dia todo.",
     price: 29.99,
-    pictureUrl: "https://images.pexels.com/photos/35185/pexels-photo.jpg",
+    pictureUrl:
+      "https://images.pexels.com/photos/206434/pexels-photo-206434.jpeg",
     category: "hats",
     stock: 70,
     rating: 4.6,
@@ -106,7 +108,7 @@ export const items = [
       "Boné esportivo com viseira para atividades ao ar livre. Mantém o sol longe dos seus olhos.",
     price: 22.99,
     pictureUrl:
-      "https://images.pexels.com/photos/157888/fashion-glasses-hat-property-157888.jpeg",
+      "https://images.pexels.com/photos/206434/pexels-photo-206434.jpeg",
     category: "hats",
     stock: 20,
     rating: 3.8,
