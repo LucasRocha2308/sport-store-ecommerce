@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { items } from "../../mock/itemsMock";
 import {
   Container,
@@ -10,12 +10,11 @@ import {
   CardContent,
   Button,
 } from "@mui/material";
-import { useCart } from "../../context/CartContext";
 import { truncateText } from "../../utils/truncateText";
 
 export function CategoryPage() {
   const { category } = useParams();
-  const { addToCart } = useCart();
+  const navigate = useNavigate();
   const categoryItems = items.filter((item) => item.category === category);
 
   return (
@@ -56,7 +55,7 @@ export function CategoryPage() {
                     sx={{ ml: "auto" }}
                     onClick={(e) => {
                       e.preventDefault();
-                      addToCart(item);
+                      navigate(`/item/${item.id}`);
                     }}
                   >
                     Adicionar ao Carrinho

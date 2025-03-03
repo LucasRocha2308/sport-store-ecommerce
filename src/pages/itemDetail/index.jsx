@@ -15,6 +15,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { CartContext } from "../../context/CartContext";
+import { ItemCount } from "../../components/ItemCount";
 
 export function ItemDetail() {
   const { id } = useParams();
@@ -22,6 +23,7 @@ export function ItemDetail() {
   const item = items.find((item) => item.id === parseInt(id));
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   if (!item) {
     return <div>Item não encontrado</div>;
@@ -29,12 +31,7 @@ export function ItemDetail() {
 
   const handleAddToCart = () => {
     if (selectedSize && selectedColor) {
-      const itemWithDetails = {
-        ...item,
-        size: selectedSize,
-        color: selectedColor,
-      };
-      addToCart(itemWithDetails);
+      addToCart(item, quantity, selectedSize, selectedColor);
     } else {
       alert("Por favor, selecione o tamanho e a cor.");
     }
@@ -117,6 +114,13 @@ export function ItemDetail() {
               </Grid>
             </Grid>
           </Grid>
+
+          <ItemCount
+            initial={quantity}
+            min={1}
+            max={10}
+            onQuantityChange={(newQuantity) => setQuantity(newQuantity)}
+          />
 
           <Typography variant="h5" color="text.primary" sx={{ mb: 2 }}>
             R$ {item.price.toFixed(2)}

@@ -59,7 +59,7 @@ export function Categories() {
         modules={[Autoplay, Navigation, Pagination]}
         spaceBetween={10}
         slidesPerView={1}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{ delay: 2000, disableOnInteraction: false }}
         navigation
         pagination={{ clickable: true }}
         loop={true}

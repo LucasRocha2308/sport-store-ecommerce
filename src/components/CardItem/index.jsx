@@ -6,12 +6,11 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import { useCart } from "../../context/CartContext";
+import { Link, useNavigate } from "react-router-dom";
 import { truncateText } from "../../utils/truncateText";
-import { Link } from "react-router-dom";
 
 export function CardItem({ item }) {
-  const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   return (
     <Link to={`/item/${item.id}`} style={{ textDecoration: "none" }}>
@@ -33,7 +32,10 @@ export function CardItem({ item }) {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => addToCart(item)}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(`/item/${item.id}`);
+            }}
           >
             Adicionar ao Carrinho
           </Button>
