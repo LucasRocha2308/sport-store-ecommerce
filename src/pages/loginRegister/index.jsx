@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Container,
   Typography,
@@ -45,6 +45,7 @@ export function LoginRegister() {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -61,7 +62,13 @@ export function LoginRegister() {
       setSnackbarMessage("Login realizado com sucesso!");
       setSnackbarSeverity("success");
       setSnackbarOpen(true);
-      navigate("/shop");
+
+      const from = location.state?.from;
+      if (from === "cart") {
+        navigate("/cart");
+      } else {
+        navigate("/shop");
+      }
     } catch (error) {
       setSnackbarMessage(error.message);
       setSnackbarSeverity("error");

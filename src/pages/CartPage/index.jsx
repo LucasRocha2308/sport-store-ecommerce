@@ -35,6 +35,9 @@ export function CartPage() {
       setSnackbarMessage("Você precisa estar logado para finalizar a compra!");
       setSnackbarSeverity("warning");
       setSnackbarOpen(true);
+      setTimeout(() => {
+        navigate("/login", { state: { from: "cart" } });
+      }, 3000);
     }
   };
 
